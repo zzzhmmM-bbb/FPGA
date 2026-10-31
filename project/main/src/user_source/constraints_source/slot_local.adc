@@ -1,0 +1,19 @@
+# Co-locate the high-fanout slot source and its first receiving FF.
+# Floating region avoids fixing an arbitrary chip coordinate.
+create_bound {slot_capture_local} -mode floating -width 4 -height 4
+add_cells_to_bound -bound {slot_capture_local} -cells {sd_card_bmp_m0/load_slot_reg[2] frame_read_write_m0/frame_fifo_write_m0/write_addr_index_d0_reg[2]}
+
+# Attempt1: ext_mem->sd recovery -0.458ns; two route nets consume 1.600ns.
+# Keep the source, reset OR and four synchronizer FFs in one floating region.
+create_bound {fifo_reset_local} -mode floating -width 2 -height 2
+add_cells_to_bound -bound {fifo_reset_local} -cells {frame_read_write_m0/frame_fifo_write_m0/fifo_aclr_reg frame_read_write_m0/u_overflow_reset/async_reset_syn_2 frame_read_write_m0/u_overflow_reset/reset_pipe_reg[0] frame_read_write_m0/u_overflow_reset/reset_pipe_reg[1] frame_read_write_m0/write_buf/asy_w_rst0_reg frame_read_write_m0/write_buf/asy_w_rst1_reg}
+# Attempt1: clk->audio recovery -2.037ns; rst_all net delay 0.865ns.
+# Keep the source and both audio release synchronizer FFs close together.
+create_bound {audio_reset_local} -mode floating -width 2 -height 2
+add_cells_to_bound -bound {audio_reset_local} -cells {u_startup_reset_control/global_reset_reg u_reset_audio/reset_pipe_reg[0] u_reset_audio/reset_pipe_reg[1]}
+
+# Attempt2: sdr_t is x17y30, drives DQ enable pads at x0/x40, y5..56.
+# A small fixed region around the chip center shortens the worst corner span.
+# This changes internal FF placement only, not SDRAM pin/clock/timing constraints.
+create_bound {sdram_enable_center} -mode fixed -width 4 -height 4 -origin {18 32}
+add_cells_to_bound -bound {sdram_enable_center} -cells {U3/u2_ram/u2_wrrd/sdr_t_reg}

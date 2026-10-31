@@ -1,0 +1,6 @@
+output/
+__pycache__/
+*.py[cod]
+tools/toolchain.json
+.DS_Store
+Thumbs.db

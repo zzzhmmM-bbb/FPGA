@@ -1,0 +1,6 @@
+{
+  "td_commands": "D:/TD/Software/bin/td_commands_prompt.exe",
+  "python": "python",
+  "iverilog": "iverilog",
+  "vvp": "vvp"
+}

@@ -1,0 +1,2 @@
+4ac4dcd1a290a70701a6b642219e6dbd241a4dbff6cdcf3cc325d10a962a0e77 *bit/main/main_T10b_lv3fix.bit
+6039b3d4ba39a2d830c13a62a11afd9e5d7fd3069c2f13a2811f9a159507953c *bit/slave/slave_v26_local.bit

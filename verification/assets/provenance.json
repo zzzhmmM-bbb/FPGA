@@ -1,0 +1,18 @@
+[
+  {
+    "source": "project/main/src/user_source/hdl_source/subtitle_rom_init.vh",
+    "source_sha256": "565d5e7cf2bf7926c339b6a7f37ba01c45b4a661a3f8f32b1c007ee650aac2e7",
+    "fixture": "verification/assets/subtitle_rom.hex",
+    "words": 24576,
+    "sha256": "589e2fdb078eaf9f400ca7edbecd68684af957606140c76b190cf1a9cadb611d",
+    "mapping": "word[b*2048+j] = INIT_B[b][16*j +:16]"
+  },
+  {
+    "source": "project/main/src/user_source/hdl_source/thumbnail/shared_init.vh",
+    "source_sha256": "920b9e17cc406c8910bc73d499ceddaff5420882dd10630be480a8e2c241b874",
+    "fixture": "verification/assets/reference/compressed.mem",
+    "words": 24576,
+    "sha256": "bd7f81c140f148021924bbf3ad296d1a81d0252b470704e7c211b3772420f80c",
+    "mapping": "word[b*2048+j] = INIT_B[b][16*j +:16]"
+  }
+]
